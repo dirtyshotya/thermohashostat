@@ -1,0 +1,286 @@
+{
+  "PROFILES": [
+    {
+      "Frequency": 520,
+      "Hashrate": 99.2,
+      "IsDynamic": true,
+      "Profile Name": "520MHz",
+      "Voltage": 13.700000000000001,
+      "Watts": 3328
+    },
+    {
+      "Frequency": 370,
+      "Hashrate": 70.6,
+      "IsDynamic": true,
+      "Profile Name": "370MHz",
+      "Voltage": 13.100000000000001,
+      "Watts": 2783
+    },
+    {
+      "Frequency": 395,
+      "Hashrate": 75.4,
+      "IsDynamic": true,
+      "Profile Name": "395MHz",
+      "Voltage": 13.200000000000001,
+      "Watts": 2873
+    },
+    {
+      "Frequency": 595,
+      "Hashrate": 113.5,
+      "IsDynamic": true,
+      "Profile Name": "595MHz",
+      "Voltage": 14,
+      "Watts": 3600
+    },
+    {
+      "Frequency": 670,
+      "Hashrate": 127.8,
+      "IsDynamic": true,
+      "Profile Name": "670MHz",
+      "Voltage": 14.3,
+      "Watts": 3873
+    },
+    {
+      "Frequency": 550,
+      "Hashrate": 104.9,
+      "IsDynamic": false,
+      "Profile Name": "550",
+      "Voltage": 13.5,
+      "Watts": 3443
+    },
+    {
+      "Frequency": 320,
+      "Hashrate": 61,
+      "IsDynamic": false,
+      "Profile Name": "320",
+      "Voltage": 12,
+      "Watts": 2617
+    },
+    {
+      "Frequency": 320,
+      "Hashrate": 61,
+      "IsDynamic": true,
+      "Profile Name": "320MHz",
+      "Voltage": 12.9,
+      "Watts": 2601
+    },
+    {
+      "Frequency": 170,
+      "Hashrate": 32.4,
+      "IsDynamic": true,
+      "Profile Name": "170MHz",
+      "Voltage": 12.3,
+      "Watts": 2056
+    },
+    {
+      "Frequency": 450,
+      "Hashrate": 85.9,
+      "IsDynamic": false,
+      "Profile Name": "450",
+      "Voltage": 12.8,
+      "Watts": 3085
+    },
+    {
+      "Frequency": 195,
+      "Hashrate": 37.2,
+      "IsDynamic": true,
+      "Profile Name": "195MHz",
+      "Voltage": 12.4,
+      "Watts": 2146
+    },
+    {
+      "Frequency": 420,
+      "Hashrate": 80.1,
+      "IsDynamic": true,
+      "Profile Name": "420MHz",
+      "Voltage": 13.3,
+      "Watts": 2964
+    },
+    {
+      "Frequency": 200,
+      "Hashrate": 38.1,
+      "IsDynamic": false,
+      "Profile Name": "200",
+      "Voltage": 12,
+      "Watts": 2172
+    },
+    {
+      "Frequency": 325,
+      "Hashrate": 62,
+      "IsDynamic": false,
+      "Profile Name": "325",
+      "Voltage": 12.2,
+      "Watts": 2632
+    },
+    {
+      "Frequency": 220,
+      "Hashrate": 41.9,
+      "IsDynamic": true,
+      "Profile Name": "220MHz",
+      "Voltage": 12.5,
+      "Watts": 2237
+    },
+    {
+      "Frequency": 100,
+      "Hashrate": 19,
+      "IsDynamic": false,
+      "Profile Name": "100",
+      "Voltage": 12,
+      "Watts": 1801
+    },
+    {
+      "Frequency": 345,
+      "Hashrate": 65.8,
+      "IsDynamic": true,
+      "Profile Name": "345MHz",
+      "Voltage": 13,
+      "Watts": 2692
+    },
+    {
+      "Frequency": 445,
+      "Hashrate": 84.9,
+      "IsDynamic": true,
+      "Profile Name": "445MHz",
+      "Voltage": 13.4,
+      "Watts": 3055
+    },
+    {
+      "Frequency": 620,
+      "Hashrate": 118.3,
+      "IsDynamic": true,
+      "Profile Name": "620MHz",
+      "Voltage": 14.100000000000001,
+      "Watts": 3691
+    },
+    {
+      "Frequency": 695,
+      "Hashrate": 132.6,
+      "IsDynamic": true,
+      "Profile Name": "695MHz",
+      "Voltage": 14.4,
+      "Watts": 3964
+    },
+    {
+      "Frequency": 720,
+      "Hashrate": 137.4,
+      "IsDynamic": true,
+      "Profile Name": "720MHz",
+      "Voltage": 14.5,
+      "Watts": 4055
+    },
+    {
+      "Frequency": 175,
+      "Hashrate": 33.4,
+      "IsDynamic": false,
+      "Profile Name": "175",
+      "Voltage": 12,
+      "Watts": 2080
+    },
+    {
+      "Frequency": 145,
+      "Hashrate": 27.6,
+      "IsDynamic": true,
+      "Profile Name": "145MHz",
+      "Voltage": 12.200000000000001,
+      "Watts": 1965
+    },
+    {
+      "Frequency": 550,
+      "Hashrate": 104.9,
+      "IsDynamic": false,
+      "Profile Name": "555",
+      "Voltage": 13.2,
+      "Watts": 3448
+    },
+    {
+      "Frequency": 745,
+      "Hashrate": 142.2,
+      "IsDynamic": true,
+      "Profile Name": "745MHz",
+      "Voltage": 14.600000000000001,
+      "Watts": 4146
+    },
+    {
+      "Frequency": 450,
+      "Hashrate": 85.9,
+      "IsDynamic": false,
+      "Profile Name": "425",
+      "Voltage": 12,
+      "Watts": 3099
+    },
+    {
+      "Frequency": 270,
+      "Hashrate": 51.5,
+      "IsDynamic": true,
+      "Profile Name": "270MHz",
+      "Voltage": 12.700000000000001,
+      "Watts": 2419
+    },
+    {
+      "Frequency": 470,
+      "Hashrate": 89.7,
+      "IsDynamic": true,
+      "Profile Name": "470MHz",
+      "Voltage": 13.5,
+      "Watts": 3146
+    },
+    {
+      "Frequency": 570,
+      "Hashrate": 108.8,
+      "IsDynamic": true,
+      "Profile Name": "570MHz",
+      "Voltage": 13.9,
+      "Watts": 3510
+    },
+    {
+      "Frequency": 545,
+      "Hashrate": 104,
+      "IsDynamic": true,
+      "Profile Name": "default",
+      "Voltage": 13.8,
+      "Watts": 3419
+    },
+    {
+      "Frequency": 495,
+      "Hashrate": 94.4,
+      "IsDynamic": true,
+      "Profile Name": "495MHz",
+      "Voltage": 13.600000000000001,
+      "Watts": 3237
+    },
+    {
+      "Frequency": 245,
+      "Hashrate": 46.7,
+      "IsDynamic": true,
+      "Profile Name": "245MHz",
+      "Voltage": 12.600000000000001,
+      "Watts": 2328
+    },
+    {
+      "Frequency": 295,
+      "Hashrate": 56.3,
+      "IsDynamic": true,
+      "Profile Name": "295MHz",
+      "Voltage": 12.8,
+      "Watts": 2510
+    },
+    {
+      "Frequency": 645,
+      "Hashrate": 123.1,
+      "IsDynamic": true,
+      "Profile Name": "645MHz",
+      "Voltage": 14.200000000000001,
+      "Watts": 3782
+    }
+  ],
+  "STATUS": [
+    {
+      "Code": 323,
+      "Description": "LUXminer 2023.12.21.115445-c5f6aa5",
+      "Msg": "List profiles",
+      "STATUS": "S",
+      "When": 1704572320
+    }
+  ],
+  "id": 1
+}

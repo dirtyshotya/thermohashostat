@@ -1,0 +1,14 @@
+[Unit]
+Description=Lux Tuner Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/100acresheater
+ExecStart=/home/100acresheater/updater.sh
+Environment="PYTHONPATH=$PYTHONPATH:/home/100acresheater/"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

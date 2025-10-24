@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit IP Address</title>
+    <style>
+        body {
+            background-color: #333; /* Light black background */
+            color: orange; /* Orange text */
+            text-shadow: 2px 2px 4px #000000; /* Dark black text shadow */
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-image: url(/bg.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+	    place-items: center;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: orange;
+            width: 0;
+            margin: 20px;
+            animation: expandLine 2s forwards;
+        }
+
+        @keyframes expandLine {
+           from {
+                width: 0;
+           }
+           to {
+               width: 100%;
+            }
+        }
+
+        /* Button Style */
+        button {
+            background-color: #FFA500; /* Orange background */
+            border: none;
+            color: black;
+            padding: .1rem .2rem; /* Some padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s; /* 0.4 second transition */
+            cursor: pointer;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 9px #cc8400; /* Box shadow for 3D effect */
+	    width: fit-content;
+        }
+
+        /* Button Hover Effects */
+        button:hover {
+            background-color: #e69500; /* Darker shade of orange */
+            color: white;
+            box-shadow: 0 5px #996300; /* Adjusted box shadow */
+            transform: translateY(4px); /* Slightly raise the button */
+        }
+
+        nav {
+            display: flex;
+            font-size: 1rem;
+	    margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Submit IP Address</h1>
+    <form action="/submit-ip" method="post">
+        <label for="ip">IP Address:</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="clearIp1">Clear</button>
+    <hr>
+    <form action="/submit-ip2" method="post">
+        <label for="ip">IP Address 2:</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="clearIp2">Clear</button>
+    <hr>
+    <form action="/submit-ip3" method="post">
+        <label for="ip">IP Address 3:</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="clearIp3">Clear</button>
+    <hr>
+    <form action="/submit-ip4" method="post">
+        <label for="ip">IP Address 4: Zone 2</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="clearIp4">Clear</button>
+    <hr>
+    <form action="/submit-ip5" method="post">
+        <label for="ip">IP Address 5: Zone 3</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="clearIp5">Clear</button>
+    <script src="clearip.js"></script>
+    <nav>
+	    <a href="/"><button>Thermostat&nbsp;🌡️</button></a>&nbsp;|&nbsp;
+	    <a href="/ip.html"><button>Set IP&nbsp;🌐</button></a>&nbsp;|&nbsp;
+	    <a href="/wifi.html"><button>Set WiFi&nbsp;📶</button></a>&nbsp;|&nbsp;
+	    <a href="/adv.html"><button>Advanced View&nbsp;🖥️</button></a>
+    </nav>
+</body>
+</html>
+

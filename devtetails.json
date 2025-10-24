@@ -1,0 +1,59 @@
+{
+  "DEVDETAILS": [
+    {
+      "Board": "BHB42601",
+      "Chips": 126,
+      "Cores": 505,
+      "DEVDETAILS": 2,
+      "Device Path": "",
+      "Driver": "",
+      "Frequency": 320,
+      "ID": 2,
+      "Kernel": "",
+      "Model": "Antminer S19j Pro",
+      "Name": "Hash Chain 8",
+      "Profile": "445MHz",
+      "Voltage": 13.168672332689903
+    },
+    {
+      "Board": "BHB42601",
+      "Chips": 126,
+      "Cores": 505,
+      "DEVDETAILS": 1,
+      "Device Path": "",
+      "Driver": "",
+      "Frequency": 320,
+      "ID": 1,
+      "Kernel": "",
+      "Model": "Antminer S19j Pro",
+      "Name": "Hash Chain 7",
+      "Profile": "445MHz",
+      "Voltage": 13.168672332689903
+    },
+    {
+      "Board": "BHB42601",
+      "Chips": 126,
+      "Cores": 505,
+      "DEVDETAILS": 0,
+      "Device Path": "",
+      "Driver": "",
+      "Frequency": 320,
+      "ID": 0,
+      "Kernel": "",
+      "Model": "Antminer S19j Pro",
+      "Name": "Hash Chain 6",
+      "Profile": "445MHz",
+      "Voltage": 13.168672332689903
+    }
+  ],
+  "STATUS": [
+    {
+      "Code": 69,
+      "Description": "cgminer 1.0.0",
+      "Msg": "Device Details",
+      "STATUS": "S",
+      "When": 1705353954
+    }
+  ],
+  "id": 1
+}

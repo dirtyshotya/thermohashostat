@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Config</title>
+    <style>
+        body {
+            background-color: #333; /* Light black background */
+            color: orange; /* Orange text */
+            text-shadow: 2px 2px 4px #000000; /* Dark black text shadow */
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-image: url(/bg.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+        }
+
+        /* Button Style */
+        button {
+            background-color: #FFA500; /* Orange background */
+            border: none;
+            color: black;
+            padding: .1rem .2rem; /* Some padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s; /* 0.4 second transition */
+            cursor: pointer;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 9px #cc8400; /* Box shadow for 3D effect */
+        }
+
+        /* Button Hover Effects */
+        button:hover {
+            background-color: #e69500; /* Darker shade of orange */
+            color: white;
+            box-shadow: 0 5px #996300; /* Adjusted box shadow */
+            transform: translateY(4px); /* Slightly raise the button */
+        }
+
+        nav {
+            display: flex;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Configure WiFi:</h1>
+    <form action="/wificonfig" method="post">
+        <label for="wifi_name">WiFi Name:</label>
+        <input type="text" name="wifi_name" id="wifi_name">
+        <br>
+        <label for="wifi_password">WiFi Password:</label>
+        <input type="password" name="wifi_password" id="wifi_password">
+        <br>
+        <button type="submit" class="btn btn-warning">Set Up WiFi</button>
+    </form>
+    <nav>
+	    <a href="/"><button>Thermostat&nbsp;🌡️</button></a>&nbsp;|&nbsp;
+	    <a href="/ip.html"><button>Set IP&nbsp;🌐</button></a>&nbsp;|&nbsp;
+	    <a href="/wifi.html"><button>Set WiFi&nbsp;📶</button></a>&nbsp;|&nbsp;
+	    <a href="/adv.html"><button>Advanced View&nbsp;🖥️</button></a>
+    </nav>
+</body>
+</html>

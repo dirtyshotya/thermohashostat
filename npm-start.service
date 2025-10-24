@@ -1,0 +1,12 @@
+[Unit]
+Description=NPM Start Service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/100acresheater
+ExecStart=/usr/bin/pm2 start /home/100acresheater/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

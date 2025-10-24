@@ -1,0 +1,38 @@
+{
+  "PROFILES": [
+    {
+      "Frequency": 400,
+      "Model": "Antminer S9",
+      "Profile Name": "efficiency",
+      "Voltage": 8.5
+    },
+    {
+      "Frequency": 750,
+      "Model": "Antminer S9",
+      "Profile Name": "performance",
+      "Voltage": 9.199999809265137
+    },
+    {
+      "Frequency": 650,
+      "Model": "Antminer S9",
+      "Profile Name": "default",
+      "Voltage": 8.899999618530273
+    },
+    {
+      "Frequency": 650,
+      "Model": "Antminer S9",
+      "Profile Name": "custom",
+      "Voltage": 8.899999618530273
+    }
+  ],
+  "STATUS": [
+    {
+      "Code": 323,
+      "Description": "LUXminer 2023.4.14-u0-a8a9526c4c",
+      "Msg": "List profiles",
+      "STATUS": "S",
+      "When": 1704819239
+    }
+  ],
+  "id": 1
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitcoin Mining Temperature Relay Configuration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark background for contrast */
+            color: #ff8c00; /* Orange to represent heat/temperature */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #262626; /* Dark grey for a technical look */
+            border-radius: 10px;
+            padding: 20px;
+            margin: auto;
+            width: 50%;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); /* Orange glow for emphasis */
+        }
+
+        h1 {
+            color: #ff8c00; /* Bright orange for headers */
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #ff8c00;
+            border-radius: 5px;
+            background: #1c1c1c; /* Slightly lighter black for inputs */
+            color: white;
+        }
+
+        button {
+            background-color: #ff8c00; /* Orange button for actions */
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e67300; /* Darker shade on hover */
+        }
+
+        .animated-hr {
+            height: 2px;
+            background: linear-gradient(to right, #ff8c00, #fff, #ff8c00);
+            animation: animate 2s linear infinite;
+        }
+
+        @keyframes animate {
+            0% { background-position: -100%; }
+            50% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+        }
+
+        .form-description {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bitcoin Mining Temperature Relay Configuration</h1>
+        <hr class="animated-hr">
+
+        <form action="/setrelay1ip" method="post">
+            <div class="form-group">
+                <label for="relay1ip">Relay 1 IP Address:</label>
+                <input type="text" id="relay1ip" name="ip" required>
+                <span class="form-description">Enter IP address for Temperature Relay 1 (Zone 2)</span>
+            </div>
+            <button type="submit">Set Relay 1 IP</button>
+        </form>
+
+        <hr class="animated-hr">
+
+        <form action="/setrelay2ip" method="post">
+            <div class="form-group">
+                <label for="relay2ip">Relay 2 IP Address:</label>
+                <input type="text" id="relay2ip" name="ip" required>
+                <span class="form-description">Enter IP address for Temperature Relay 2 (Zone 3)</span>
+            </div>
+            <button type="submit">Set Relay 2 IP</button>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bitcoin Mining Temperature Relay Configuration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            /* Dark background for contrast */
+            color: #ff8c00;
+            /* Orange to represent heat/temperature */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #262626;
+            /* Dark grey for a technical look */
+            border-radius: 10px;
+            padding: 20px;
+            margin: auto;
+            width: 50%;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.7);
+            /* Orange glow for emphasis */
+        }
+
+        h1 {
+            color: #ff8c00;
+            /* Bright orange for headers */
+        }
+
+        input,
+        button {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #ff8c00;
+            border-radius: 5px;
+            background: #1c1c1c;
+            /* Slightly lighter black for inputs */
+            color: white;
+        }
+
+        button {
+            background-color: #ff8c00;
+            /* Orange button for actions */
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e67300;
+            /* Darker shade on hover */
+        }
+
+        .animated-hr {
+            height: 2px;
+            background: linear-gradient(to right, #ff8c00, #fff, #ff8c00);
+            animation: animate 2s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                background-position: -100%;
+            }
+
+            50% {
+                background-position: 100%;
+            }
+
+            100% {
+                background-position: -100%;
+            }
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+        }
+
+        .form-description {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bitcoin Mining Temperature Offset Configuration</h1>
+        <form action="/setoffset" method="post" class="zone-form">
+            <label for="offset1">Zone 1 - Target Temp Offset (-10°F to 10°F):</label>
+            <input type="number" id="offset" name="offset" min="-10" max="10" step="1">
+            <button type="submit">Submit</button>
+        </form>
+        <form action="/setoffset2" method="post" class="zone-form">
+            <label for="offset2">Zone 2 - Target Temp Offset (-10°F to 10°F):</label>
+            <input type="number" id="offset2" name="offset" min="-10" max="10" step="1">
+            <button type="submit">Submit</button>
+        </form>
+        <form action="/setoffset3" method="post" class="zone-form">
+            <label for="offset3">Zone 3 - Target Temp Offset (-10°F to 10°F):</label>
+            <input type="number" id="offset3" name="offset" min="-10" max="10" step="1">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        function fetchOffset() {
+            fetch('/offset.csv')
+                .then(response => response.text())
+                .then(data => {
+                    const offsetValue = parseInt(data, 10);
+                    if (!isNaN(offsetValue)) {
+                        setDefaultOffset(offsetValue);
+                    }
+                }).catch(error => {
+                    console.error('Error fetching offset', error);
+                });
+        }
+
+        function setDefaultOffset(offsetValue) {
+            const offsetInput = document.getElementById('offset');
+            offsetInput.value = offsetValue;
+        }
+
+        // Fetch and set offset 2
+        function fetchOffset2() {
+            fetch('/offset2.csv')
+                .then(response => response.text())
+                .then(data => {
+                    const offsetValue = parseInt(data, 10);
+                    if (!isNaN(offsetValue)) {
+                        setDefaultOffset2(offsetValue);
+                    }
+                }).catch(error => {
+                    console.error('Error fetching offset 2', error);
+                });
+        }
+
+        function setDefaultOffset2(offsetValue) {
+            const offsetInput = document.getElementById('offset2');
+            offsetInput.value = offsetValue;
+        }
+
+        // Fetch and set offset 3
+        function fetchOffset3() {
+            fetch('/offset3.csv')
+                .then(response => response.text())
+                .then(data => {
+                    const offsetValue = parseInt(data, 10);
+                    if (!isNaN(offsetValue)) {
+                        setDefaultOffset3(offsetValue);
+                    }
+                }).catch(error => {
+                    console.error('Error fetching offset 3', error);
+                });
+        }
+
+        function setDefaultOffset3(offsetValue) {
+            const offsetInput = document.getElementById('offset3');
+            offsetInput.value = offsetValue;
+        }
+        window.onload = function () {
+            fetchOffset();
+            fetchOffset2();
+            fetchOffset3();
+        };
+
+    </script>
+</body>
+
+</html>

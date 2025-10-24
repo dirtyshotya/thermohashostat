@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitmain Space Heater Thermostat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #333;
+            /* Light black background */
+            color: orange;
+            /* Orange text */
+            text-shadow: 2px 2px 4px #000000;
+            /* Dark black text shadow */
+            display: flex;
+	    flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-image: url(/bg.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            text-align: center;
+            place-items: center;
+        }
+
+        #myCircle,
+        #roomCircle {
+            background: rgba(255, 255, 255, .1);
+            border-radius: 50%;
+            transition: .1s;
+            color: black;
+            text-shadow: 2px 2px 4px lightgray;
+            box-shadow: 5px 5px 5px black;
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 15vw;
+            aspect-ratio: 1 / 1;
+        }
+
+        #roomCircle {
+            color: orange;
+        }
+
+        svg {
+            position: absolute;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .progress-ring__circle {
+            fill: transparent;
+            stroke-width: 1;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.3s;
+        }
+
+        .form-range {
+            -webkit-appearance: none;
+            width: 100%;
+            border-radius: 50%;
+            height: 1px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .form-range:focus {
+            outline: none;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: orange;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .form-range::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: orange;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        nav {
+            display: none;
+	    flex-wrap: wrap;
+            font-size: 1rem;
+        }
+
+        a {
+            color: orange;
+        }
+
+        #temp {
+            display: grid;
+        }
+
+        iframe {
+            width: 20vw;
+            aspect-ratio: 1 / 1;
+            flex: 1;
+            /* This allows each child to grow and take up equal space */
+            min-width: 200px;
+        }
+
+        #fahrenheitRange {
+            width: 90vw;
+        }
+
+        h4 {
+            width: 20vw;
+            display: flex;
+        }
+
+        #dashboard {
+            display: flex;
+            flex-direction: row;
+            /* Align items in a row */
+            justify-content: center;
+            /* Center items horizontally */
+            align-items: center;
+            /* Center items vertically */
+            flex-wrap: wrap;
+            /* Allow items to wrap to next line on smaller screens */
+            gap: 20px;
+            /* Optional: Adds space between items */
+            width: 100vw;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            #myCircle,
+            #roomCircle {
+                width: 40vw;
+                font-size: 2rem;
+            }
+        }
+
+        #bubble {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid orange;
+            background: rgba(255 255 255 .1);
+        }
+
+        /* Button Style */
+        button {
+            background-color: #FFA500;
+            /* Orange background */
+            border: none;
+            color: black;
+            padding: .1rem .2rem;
+            /* Some padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            /* 0.4 second transition */
+            cursor: pointer;
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 9px #cc8400;
+            /* Box shadow for 3D effect */
+        }
+
+        /* Button Hover Effects */
+        button:hover {
+            background-color: #e69500;
+            /* Darker shade of orange */
+            color: white;
+            box-shadow: 0 5px #996300;
+            /* Adjusted box shadow */
+            transform: translateY(4px);
+            /* Slightly raise the button */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #454545;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #454545;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Keyframes for flickering effect */
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Keyframes for wavering effect */
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        #fire {
+            display: inline-block;
+            /* Allows for transform */
+            transition: transform 0.3s;
+            font-size: 6rem;
+        }
+
+        #fire:hover,
+        fire:focus {
+            animation: flicker 0.2s infinite alternate, wave 0.6s infinite alternate;
+            cursor: pointer;
+        }
+
+        .fire-animate {
+            animation: flicker 0.2s infinite alternate, wave 0.6s infinite alternate;
+        }
+
+        #logoContainer {
+            position: fixed;
+            top: 6rem;
+            left: 1rem;
+            padding: .5rem;
+            transform: rotate(-45deg);
+            transform-origin: top left;
+        }
+
+        #logo {
+            display: block;
+            filter: invert(100%);
+            max-width: 100px;
+            /* Adjust the size as needed */
+        }
+
+        #logoText {
+            color: red;
+            text-align: center;
+            font-family: "Calligraffitti", sans-serif;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="logoContainer">
+        <img id="logo" src="bg.png" alt="100 Acres Ranch Logo">
+        <div id="logoText">Thermohashostat</div>
+    </div>
+    <a href="/"><button>Thermostat&nbsp;🌡️</button></a>&nbsp;|&nbsp;
+    <a href="/adv.html"><button>Advanced View&nbsp;🖥️</button></a>&nbsp;|&nbsp;
+    <button id="gear">⚙️</button>
+    <nav>
+        &nbsp;|&nbsp;<a href="/ip.html"><button>Miner IPs&nbsp;⛏️</button></a>&nbsp;|&nbsp;
+        <a href="/setrelayips.html"><button>Relay IPs&nbsp;🌐</button></a>&nbsp;|&nbsp;
+        <a href="/offsets.html"><button>Temperature Offsets&nbsp;🌡️</button></a>&nbsp;|&nbsp;
+        <a href="/autofan"><button>Apply AutoFan to All Miners&nbsp;🌐</button></a>&nbsp;|&nbsp;
+        <a href="/wifi.html"><button>WiFi&nbsp;📶</button></a>
+    </nav>
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please confirm that your Bitmain S19 is running on 240V and has stock high RPM fans. Note that running in
+                afterburner mode will be loud and could cause fire. Check electric wires and outlets and ensure they are
+                up to safety standards and inspected by an electrician. (Might be too extreme for Noctua/other than
+                stock fans.) Afterburner is an overclock setting of 600Mhz and can cause damage. Please be safe as
+                running miners comes with inherent risks. Do you agree to these terms?</p>
+            <button id="agreeButton">I Agree</button>
+        </div>
+    </div>
+
+    <div id="dashboard">
+        <div id="myCircle">
+            <svg width="200" height="200">
+                <circle class="progress-ring__circle" stroke="white" cx="100" cy="100" r="90" stroke-dasharray="565.48" stroke-dashoffset="565.48"></circle>
+            </svg>
+            <div id="temp">
+                <span id="fahrenheitValue">75°F</span>
+                <span id="celsiusValue">24°C</span>
+            </div>
+        </div>
+        <div>
+            <span id="fire">🔥</span>
+            <br>
+            AFTERBURNER MODE&nbsp;⚠️
+            <div id="abortButtonContainer"></div>
+        </div>
+	<input type="range" class="form-range" id="fahrenheitRange" min="50" max="100" value="75">
+    </div>
+    <script>
+        let isNavVisible = false;
+        
+	document.getElementById('gear').onclick = function() {
+            isNavVisible = !isNavVisible;
+	    var nav = document.querySelector('nav');
+            // Set the display style based on the boolean value
+            if (isNavVisible) {
+                nav.style.display = 'block';
+             } else {
+                nav.style.display = 'none';
+             }
+	};
+
+        document.getElementById("fire").onclick = function () {
+            document.getElementById("disclaimerModal").style.display = "block";
+        };
+
+        document.getElementsByClassName("close")[0].onclick = function () {
+            document.getElementById("disclaimerModal").style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            let modal = document.getElementById("disclaimerModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        document.getElementById("agreeButton").onclick = function () {
+            document.getElementById('fire').classList.add('fire-animate');
+            fetch('/afterburner', {
+                method: 'POST'
+            }).then(response => {
+                console.log(response);
+                console.log('Afterburner mode activated');
+            }).catch(error => {
+                // Handle any errors
+                console.error('Error:', error);
+            });
+            document.getElementById("disclaimerModal").style.display = "none";
+            createAbortButton();
+        };
+
+        function checkAfterburnerFile() {
+            let fire = document.getElementById('fire');
+            fetch('/checkAfterburner')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        fire.classList.add('fire-animate');
+                        createAbortButton(); // Call the existing createAbortButton function
+                    } else if (fire.classList.contains('fire-animate')) {
+                        fire.classList.remove('fire-animate');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function createAbortButton() {
+            var buttonContainer = document.getElementById("abortButtonContainer");
+            buttonContainer.innerHTML = ''; // Clear any existing content
+
+            var abortButton = document.createElement("button");
+            abortButton.textContent = "Abort Afterburner";
+            abortButton.onclick = function () {
+                // Send a blank POST request to /afterburneroff
+                fetch('/afterburneroff', {
+                    method: 'POST'
+                }).then(response => {
+                    console.log('Afterburner mode aborted');
+                    // Optionally remove the button after clicking
+                    buttonContainer.innerHTML = '';
+                }).catch(error => {
+                    // Handle any errors
+                    console.error('Error:', error);
+                });
+
+                fetch('/autofan')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            };
+
+            buttonContainer.appendChild(abortButton);
+        }
+
+    </script>
+    <div id="dashboard">
+        <span>
+            <h4>Zone 1</h4>
+            <iframe id="iframe" src="/temperature" frameBorder="0"></iframe>
+        </span>
+	<br>
+        <span>
+            <h4>Zone 2</h4>
+            <iframe id="iframe2" src="/temp2" frameBorder="0"></iframe>
+        </span>
+        <span>
+            <h4>Zone 3</h4>
+            <iframe id="iframe3" src="/temp3" frameBorder="0"></iframe>
+        </span>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchTemperature();
+                checkAfterburnerFile();
+                fetchOffset(); // If you're also fetching the offset on DOMContentLoaded
+            });
+
+            function fetchTemperature() {
+                fetch('/temp.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const tempValue = parseFloat(data);
+                        if (!isNaN(tempValue)) {
+                            updateTemperatureDisplay(tempValue);
+                        } else {
+                            console.error('Received non-numeric temperature value');
+                        }
+                    }).catch(error => {
+                        console.error('Error fetching temperature', error);
+                    });
+            }
+
+            function fetchOffset() {
+                fetch('/offset.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const offsetValue = parseInt(data, 10); // Parse as an integer
+                        if (!isNaN(offsetValue)) {
+                            setDefaultOffset(offsetValue);
+                        }
+                    }).catch(error => {
+                        console.error('Error fetching offset', error);
+                    });
+            }
+
+            function setDefaultOffset(offsetValue) {
+                const offsetInput = document.getElementById('offset');
+                offsetInput.value = offsetValue;
+            }
+
+            function updateTemperatureDisplay(tempValue) {
+                const fahrenheitDisplay = document.getElementById('fahrenheitValue');
+                const celsiusDisplay = document.getElementById('celsiusValue');
+                const rangeInput = document.getElementById('fahrenheitRange');
+
+                fahrenheitDisplay.textContent = `${tempValue}°F`;
+                celsiusDisplay.textContent = `${fahrenheitToCelsius(tempValue)}°C`;
+                rangeInput.value = tempValue;
+
+                // Update the UI to reflect the new temperature
+                const percent = (tempValue - 50) * 100 / (100 - 50);
+                updateProgress(percent);
+                rangeInput.style.background = getColorForTemperature(tempValue);
+                myCircle.style.color = getColorForTemperature(tempValue);
+                document.querySelector('.progress-ring__circle').style.stroke = getColorForTemperature(tempValue);
+            }
+
+            function submitTemperature(value) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/tempset', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                var data = 'temperature=' + encodeURIComponent(value);
+
+                xhr.send(data);
+
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        console.log('Temperature set successfully');
+                    } else {
+                        console.error('Error setting temperature');
+                    }
+                };
+            }
+
+            function fahrenheitToCelsius(fahrenheit) {
+                return ((fahrenheit - 32) * 5 / 9).toFixed(2);
+            }
+
+            function getColorForTemperature(value) {
+                const maxTemp = 100;
+                const minTemp = 50;
+                const ratio = (value - minTemp) / (maxTemp - minTemp);
+                const hue = 240 - ratio * 240; // from blue (240) to red (0)
+                return `hsl(${hue}, 100%, 50%)`;
+            }
+
+            const rangeInput = document.getElementById('fahrenheitRange');
+            const myCircle = document.getElementById('myCircle');
+            const fahrenheitDisplay = document.getElementById('fahrenheitValue');
+            const celsiusDisplay = document.getElementById('celsiusValue');
+            const circle = document.querySelector('.progress-ring__circle');
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = circumference;
+
+            function updateProgress(percent) {
+                const offset = circumference - percent / 100 * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
+
+            rangeInput.addEventListener('input', function () {
+                const fahrenheitValue = rangeInput.value;
+                const celsiusValue = fahrenheitToCelsius(fahrenheitValue);
+                fahrenheitDisplay.textContent = `${fahrenheitValue}°F`;
+                celsiusDisplay.textContent = `${celsiusValue}°C`;
+
+                const percent = (fahrenheitValue - 50) * 100 / (100 - 50);
+                updateProgress(percent);
+
+                rangeInput.style.background = getColorForTemperature(fahrenheitValue);
+                myCircle.style.color = getColorForTemperature(fahrenheitValue);
+                circle.style.stroke = getColorForTemperature(fahrenheitValue);
+            });
+
+            // Event listener for when the user stops moving the range input
+            rangeInput.addEventListener('change', function () {
+                submitTemperature(rangeInput.value);
+            });
+
+            setInterval(checkAfterburnerFile, 1500);
+        </script>
+
+        <!-- Bootstrap JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            window.setInterval(function () {
+                reloadIFrame()
+            }, 3000);
+
+            function reloadIFrame() {
+                console.log('reloading..');
+                document.getElementById('iframe').contentWindow.location.reload();
+                document.getElementById('iframe2').contentWindow.location.reload();
+                document.getElementById('iframe3').contentWindow.location.reload();
+            }
+        </script>
+</body>
+
+</html>
